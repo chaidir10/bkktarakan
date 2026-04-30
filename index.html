@@ -315,10 +315,15 @@ body{
   z-index:9998;
   opacity:0;
   transition:opacity .3s;
+  pointer-events: none;
 }
-.mob-overlay.open{opacity:1;}
+.mob-overlay.open{
+  display:block;
+  opacity:1;
+  pointer-events: auto;
+}
 .mob-menu{
-  display:none;
+  display:block;
   position:fixed;
   top:0;
   right:0;
@@ -329,8 +334,12 @@ body{
   transform:translateX(100%);
   transition:transform .3s ease;
   overflow-y:auto;
+  pointer-events: auto;
 }
-.mob-menu.open{transform:translateX(0);}
+.mob-menu.open{
+  display:block;
+  transform:translateX(0);
+}
 .mob-header{
   background:linear-gradient(135deg,var(--teal-dark),var(--teal));
   padding:20px;
@@ -338,8 +347,15 @@ body{
   align-items:center;
   justify-content:space-between;
 }
-.mob-header .logo-text .name{color:#fff;font-size:1.05rem;}
-.mob-header .logo-text .sub{color:rgba(255,255,255,.7);}
+.mob-header .logo-text .name{
+  color:#fff;
+  font-size:1.05rem;
+  font-weight:800;
+}
+.mob-header .logo-text .sub{
+  color:rgba(255,255,255,.7);
+  font-size:.68rem;
+}
 .mob-close{
   background:rgba(255,255,255,.15);
   border:none;
@@ -352,6 +368,13 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
+  transition:background .2s;
+}
+.mob-close:hover{
+  background:rgba(255,255,255,.25);
+}
+.mob-close:active{
+  transform:scale(.95);
 }
 .mob-nav{padding:12px;}
 .mob-cat{
@@ -366,22 +389,35 @@ body{
   display:flex;
   align-items:center;
   gap:10px;
-  padding:10px 12px;
+  padding:11px 13px;
   color:#0c5c57;
   text-decoration:none;
   font-weight:600;
   font-size:.86rem;
   border-radius:var(--r-md);
-  margin-bottom:1px;
+  margin-bottom:2px;
   transition:all .2s;
   cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
 }
-.mob-nav a:hover,.mob-nav a.active-link{
+.mob-nav a:hover,
+.mob-nav a:active,
+.mob-nav a.active-link{
   background:var(--teal-soft);
   color:var(--teal);
 }
-.mob-nav a i{color:var(--teal);width:17px;font-size:.8rem;}
-.mob-sep{height:1px;background:var(--border);margin:6px 0;}
+.mob-nav a i{
+  color:var(--teal);
+  width:17px;
+  font-size:.8rem;
+  flex-shrink:0;
+}
+.mob-sep{
+  height:1px;
+  background:var(--border);
+  margin:6px 0;
+}
 
 /* =====================================================
    SCROLL TOP + BREADCRUMB
